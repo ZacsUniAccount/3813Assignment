@@ -1,0 +1,14 @@
+Install Angular CLI
+npm install –g @angular/cli
+
+Create New App
+ng new my-app
+
+Build New App
+ng build
+
+Serve New App
+ng serve --open
+
+Make new component
+ng generate component “pageName"
