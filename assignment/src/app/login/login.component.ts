@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 import { UserloginService } from '../services/login/userlogin.service';
 import { UserObjService } from '../services/userobj/userobj.service';
+const BACKEND_URL = "http://localhost:3000";
 
 
 @Component({
@@ -12,16 +17,20 @@ import { UserObjService } from '../services/userobj/userobj.service';
 export class LoginComponent implements OnInit {
 
   username: string = ""
-  userlogin!: UserloginService;
-  userobj!: UserObjService;
+  userlogin: UserloginService = { username: '' }
+  userobj!: UserObjService
   
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   public loginClicked() {
-    console.log("Login button clicked")
+    this.userlogin.username = this.username;
+    this.httpClient.post(BACKEND_URL + "/api/auth", this.userlogin, httpOptions)
+      .subscribe((data: any) => {
+        alert(JSON.stringify(data))
+      })
   }
 
 }
