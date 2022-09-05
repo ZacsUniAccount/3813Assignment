@@ -24,7 +24,7 @@ sockets.connect(io, PORT);
 //Start server listening for requests
 server.listen(http, PORT)
 
-
+app.post('/api/auth', require('./router/postLogin'));
 
 /*
 app.use(express.urlencoded({extended: true}));
