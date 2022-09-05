@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,9 +19,9 @@ export class LoginComponent implements OnInit {
 
   username: string = ""
   userlogin: UserloginService = { username: '' }
-  userobj!: UserObjService
+  userobj: UserObjService = { username: "", email: "", role: ""}
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,14 @@ export class LoginComponent implements OnInit {
     this.userlogin.username = this.username;
     this.httpClient.post(BACKEND_URL + "/api/auth", this.userlogin, httpOptions)
       .subscribe((data: any) => {
-        alert(JSON.stringify(data))
+        //alert(JSON.stringify(data.valid))
+        if (data.valid) {
+          this.userobj.username = data.user.username;
+          this.userobj.email = data.user.email;
+          this.userobj.role = data.user.role;
+          sessionStorage.setItem('userobj', JSON.stringify(this.userobj));
+          this.router.navigateByUrl('/home');
+        }
       })
   }
 

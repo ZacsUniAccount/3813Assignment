@@ -19,7 +19,7 @@ module.exports = function(req, res) {
                 console.log('false')
             } else {
                 userArray[i].valid = true;
-                res.send({user: userArray[i]});
+                res.send({user: userArray[i], "valid": true});
                 console.log(true)
             }
     });
