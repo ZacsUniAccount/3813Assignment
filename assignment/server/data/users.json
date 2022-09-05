@@ -1,21 +1,7 @@
 [
-        {
-            "username": "superadmin",
-            "email": "super@admin.com",
-            "role": "super_admin",
-            "valid": false
-          },
-          {
-            "username": "groupadmin",
-            "email": "group@admin.com",
-            "role": "group_admin",
-            "valid": false
-          },
-          {
-            "username": "groupassis",
-            "email": "group@assis.com",
-            "role": "group_assis",
-            "valid": false
-          }
-    ]
-
+    {
+        "username": "super",
+        "email": "super@admin.com",
+        "role": "super_admin"
+    }
+]

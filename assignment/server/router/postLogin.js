@@ -1,5 +1,5 @@
 var fs = require('fs');
-
+const testmode = true
 module.exports = function(req, res) {
     console.log(req.body)
     var u = req.body.username;
@@ -7,7 +7,12 @@ module.exports = function(req, res) {
     c = u + ' ' + p;
     console.log(c)*/
 
-    fs.readFile('./server/data/users.json', 'utf8', function(err, data) {
+    if (testmode == true) {
+        file = "./server/data/testUsers.json"
+    } else {
+        file = "./server/data/users.json"
+    }
+    fs.readFile(file, 'utf8', function(err, data) {
         //above path is in respect to where we run server.json
         if (err) throw err;
         let userArray = JSON.parse(data);

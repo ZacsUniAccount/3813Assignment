@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {path: '', component: LoginComponent}, //May want default to direct to home page once auth is set up
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
 ];

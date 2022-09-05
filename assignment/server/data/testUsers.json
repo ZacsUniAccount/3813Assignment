@@ -1,0 +1,23 @@
+[
+        {
+            "username": "superadmin",
+            "email": "super@admin.com",
+            "role": "super_admin"
+          },
+          {
+            "username": "groupadmin",
+            "email": "group@admin.com",
+            "role": "group_admin"
+          },
+          {
+            "username": "groupassis",
+            "email": "group@assis.com",
+            "role": "group_assis"
+          },
+          {
+            "username": "user",
+            "email": "user@.com",
+            "role": "user"
+          }
+    ]
+
