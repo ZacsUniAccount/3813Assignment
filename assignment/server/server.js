@@ -18,5 +18,6 @@ const server = require('./listen.js');
 server.listen(http, PORT)
 
 app.post('/api/auth', require('./router/postLogin'));
+app.post('/api/newUser', require('./router/newUser'));
 
 //app.post('/loginafter', require('./router/postLoginafter'));

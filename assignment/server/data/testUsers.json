@@ -2,17 +2,17 @@
         {
             "username": "superadmin",
             "email": "super@admin.com",
-            "role": "super_admin"
+            "role": "super admin"
           },
           {
             "username": "groupadmin",
             "email": "group@admin.com",
-            "role": "group_admin"
+            "role": "group admin"
           },
           {
             "username": "groupassis",
             "email": "group@assis.com",
-            "role": "group_assis"
+            "role": "group assistant"
           },
           {
             "username": "user",

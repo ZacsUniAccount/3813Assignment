@@ -13,13 +13,14 @@ module.exports = function(req, res) {
         file = "./server/data/users.json"
     }
     fs.readFile(file, 'utf8', function(err, data) {
-        //above path is in respect to where we run server.json
+        //above path is in respect to where we run server.js
         if (err) throw err;
         let userArray = JSON.parse(data);
         //console.log(userArray);
         let i = userArray.findIndex(user =>
             ((user.username == u)/* && (user.password == p)*/));
             if (i == -1) {
+                makenewuser();
                 res.send({"valid": false});
                 console.log('false')
             } else {

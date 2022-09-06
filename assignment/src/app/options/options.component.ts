@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { UserObjService } from '../services/userobj/userobj.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-options',
+  templateUrl: './options.component.html',
+  styleUrls: ['./options.component.css']
 })
-export class HomeComponent implements OnInit {
+export class OptionsComponent implements OnInit {
   userobj!: UserObjService
   username!: string
   email!: string
   role!: string
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -25,14 +25,5 @@ export class HomeComponent implements OnInit {
     } else {
       this.router.navigateByUrl('login')
     }
-  }
-
-  optionsClicked(){
-    this.router.navigateByUrl('options')
-  }
-
-  logout() {
-    sessionStorage.clear();
-    this.router.navigateByUrl('login')
   }
 }
