@@ -27,7 +27,7 @@ export class NewuserComponent implements OnInit {
     if (data) {
       try { this.userobj = JSON.parse(data) } catch { this.router.navigateByUrl('login') }
       this.role = this.userobj.role
-      if (this.role == 'super_admin' || this.role == 'group_admin') { } else {
+      if (this.role == 'super_admin') { } else {
         this.router.navigateByUrl('home')
       }
     }
