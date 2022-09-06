@@ -1,5 +1,5 @@
 var fs = require('fs');
-const testmode = true
+const testmode = false
 module.exports = function(req, res) {
     console.log(req.body)
     var u = req.body.username;
