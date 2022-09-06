@@ -18,35 +18,37 @@ export class NewuserComponent implements OnInit {
   role!: string
   newUsername!: string;
   newEmail!: string;
-  newRole!:string;
+  newRole!: string;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
     if (data) {
-      try { this.userobj = JSON.parse(data) } catch {this.router.navigateByUrl('login')}
-    this.role = this.userobj.role
-    if (this.role == 'super_admin' || this.role == 'group_admin') {} else {
-      this.router.navigateByUrl('home')
+      try { this.userobj = JSON.parse(data) } catch { this.router.navigateByUrl('login') }
+      this.role = this.userobj.role
+      if (this.role == 'super_admin' || this.role == 'group_admin') { } else {
+        this.router.navigateByUrl('home')
+      }
     }
-  }
   }
 
   createClicked() {
-    this.userobj.username = this.newUsername;
-    this.userobj.email = this.newEmail;
-    this.userobj.role = this.newRole;
-    console.log(JSON.stringify(this.userobj))
-    this.httpClient.post(BACKEND_URL + "/api/newuser", this.userobj, httpOptions)
-      .subscribe((data: any) => {
-        //alert(JSON.stringify(data.valid))
-        if (data.valid) {
-          alert("User created!")
-        } else {
-          alert('User creation failed')
-        }
-      })
+    if (this.newUsername == '' || this.newEmail == '' || !this.newRole) { alert('Please fill all options') } else {
+
+      this.userobj.username = this.newUsername;
+      this.userobj.email = this.newEmail;
+      this.userobj.role = this.newRole;
+      console.log(JSON.stringify(this.userobj))
+      this.httpClient.post(BACKEND_URL + "/api/newuser", this.userobj, httpOptions)
+        .subscribe((data: any) => {
+          if (data.valid) {
+            alert(data.msg)
+          } else {
+            alert(data.msg)
+          }
+        })
+    }
   }
 
 }

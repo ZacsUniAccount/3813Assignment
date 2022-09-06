@@ -20,7 +20,6 @@ module.exports = function(req, res) {
         let i = userArray.findIndex(user =>
             ((user.username == u)/* && (user.password == p)*/));
             if (i == -1) {
-                makenewuser();
                 res.send({"valid": false});
                 console.log('false')
             } else {
