@@ -19,6 +19,7 @@ export class NewuserComponent implements OnInit {
   newUsername!: string;
   newEmail!: string;
   newRole!: string;
+  super = false
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -27,18 +28,22 @@ export class NewuserComponent implements OnInit {
     if (data) {
       try { this.userobj = JSON.parse(data) } catch { this.router.navigateByUrl('login') }
       this.role = this.userobj.role
-      if (this.role == 'super admin') { } else {
+      if (this.role == 'super admin' || this.role == 'group admin') { } else {
         this.router.navigateByUrl('home')
+      }
+      if (this.role == 'super admin') {
+        this.super = true
       }
     }
   }
 
   createClicked() {
+    if (!this.super) {this.newRole = 'user'}
     if (this.newUsername == '' || this.newEmail == '' || !this.newRole) { alert('Please fill all options') } else {
-
       this.userobj.username = this.newUsername;
       this.userobj.email = this.newEmail;
       this.userobj.role = this.newRole;
+      if (this.super) {this.userobj.role = this.newRole;}
       console.log(JSON.stringify(this.userobj))
       this.httpClient.post(BACKEND_URL + "/api/newuser", this.userobj, httpOptions)
         .subscribe((data: any) => {

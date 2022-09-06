@@ -1,1 +1,32 @@
-[{"username":"super","email":"super@admin.com","role":"super admin"},{"username":"New User","email":"@ user.com","role":"User"},{"username":"sa","email":"ass","role":"user"},{"username":"tahlia","email":"saksj","role":"group assistant"}]
+[
+    {
+        "username": "super",
+        "email": "super@admin.com",
+        "role": "super admin"
+    },
+    {
+        "username": "groupadmin",
+        "email": "group@admin.com",
+        "role": "group admin"
+    },
+    {
+        "username": "groupassis",
+        "email": "group@assis.com",
+        "role": "group assistant"
+    },
+    {
+        "username": "user",
+        "email": "user@.com",
+        "role": "user"
+    },
+    {
+        "username": "new user1",
+        "email": "new@new",
+        "role": "user"
+    },
+    {
+        "username": "newone",
+        "email": "agan",
+        "role": "user"
+    }
+]
