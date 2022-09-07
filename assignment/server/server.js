@@ -19,5 +19,4 @@ server.listen(http, PORT)
 
 app.post('/api/auth', require('./router/postLogin'));
 app.post('/api/newUser', require('./router/newUser'));
-
-//app.post('/loginafter', require('./router/postLoginafter'));
+app.get('/api/allUsers', require('./router/allUsers'));

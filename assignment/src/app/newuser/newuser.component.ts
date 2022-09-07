@@ -19,7 +19,9 @@ export class NewuserComponent implements OnInit {
   newUsername!: string;
   newEmail!: string;
   newRole!: string;
-  super = false
+  super = false;
+  activeUsers!: [];
+  selectedUser!: string;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -35,8 +37,18 @@ export class NewuserComponent implements OnInit {
         this.super = true
       }
     }
+
+    this.getUsers()
   }
 
+  getUsers() {
+    this.httpClient.get(BACKEND_URL + "/api/allUsers")
+      .subscribe((data: any) => {
+        //alert(JSON.stringify(data.valid))
+        this.activeUsers=(data.users)
+        console.log(this.activeUsers)
+  });
+}
   createClicked() {
     if (!this.super) {this.newRole = 'user'}
     if (this.newUsername == '' || this.newEmail == '' || !this.newRole) { alert('Please fill all options') } else {
@@ -54,6 +66,7 @@ export class NewuserComponent implements OnInit {
           }
         })
     }
+    this.getUsers
   }
 
   backClicked(){
