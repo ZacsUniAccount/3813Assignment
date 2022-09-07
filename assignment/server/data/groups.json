@@ -4,8 +4,12 @@
             "users": "user1",
             "channel": [
                 {
-                    "title": "channel1",
-                    "users": "user1"
+                    "title": "Group1 Channel1",
+                    "users": ["user1"]
+                },
+                {
+                    "title": "Group1 Channel2`",
+                    "users": ["user1"]
                 }
             ]
         },
@@ -14,8 +18,12 @@
             "users": "user1",
             "channel": [
                 {
-                    "title": "channel1",
-                    "users": "user1"
+                    "title": "Group2 Channel1",
+                    "users": ["user1"]
+                },
+                {
+                    "title": "Group2 Channel2",
+                    "users": ["user1"]
                 }
             ]
         }

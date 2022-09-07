@@ -11,7 +11,7 @@
             <div class="inner-sidebar-header justify-content-center">
                 <div class="inner-main-header">
                     <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                    <select [(ngModel)]="selectedGroup" name="selectedGroup" class="custom-select custom-select-sm w-auto mr-1">
+                    <select (click)="getChannel()" [(ngModel)]="selectedGroup" name="selectedGroup" class="custom-select custom-select-sm w-auto mr-1">
                         <option disabled value="undefined">Select Group</option>
                         <option *ngFor="let i of grouptitle" value="{{i}}">{{i}}</option>
                     </select>
@@ -29,9 +29,9 @@
                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Channel 1</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Channel 2</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Channel 3</a>
+                                            <li>
+                                                <ul *ngFor="let channel of channeltitle"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">{{channel}}</a></ul>
+                                            </li>
                                         </nav>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
         <div class="inner-main">
             <!-- Inner main header -->
             <div class="inner-main-header">
-                <h2>Group: Channel: </h2>
+                <h2>Group: {{selectedGroup}} Channel: </h2>
             </div>
             <!-- /Inner main header -->
             <!-- Inner main body -->

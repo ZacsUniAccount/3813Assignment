@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserObjService } from '../services/userobj/userobj.service';
+import { GroupService } from '../services/group/group.service';
+import { ChannelService } from '../services/channel/channel.service';
+
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
@@ -18,8 +21,11 @@ export class ChatComponent implements OnInit {
   userobj!: UserObjService
   username!: string
   role!: string
-  groups!: object
+  groups!: GroupService
+  channels!: ChannelService
   selectedGroup!: string
+  selectedChannel!: string
+  channeltitle = Array()
   grouptitle = Array()
 
   constructor(private router: Router, private httpClient: HttpClient) { }
@@ -37,6 +43,7 @@ export class ChatComponent implements OnInit {
     this.getGroups()
   }
 
+  //Find all groups and list them
   getGroups() {
     this.httpClient.get(BACKEND_URL + "/api/allGroups")
       .subscribe((data: any) => {
@@ -46,5 +53,22 @@ export class ChatComponent implements OnInit {
         })
   });
   console.log(this.grouptitle)
+  }
+
+  //List all channels from group
+  getChannel() {
+    this.channeltitle = []
+    Object.entries(this.groups).forEach(([key, value], index) => {
+      console.log(this.selectedGroup + ":" + value.title)
+      if(this.selectedGroup == value.title){
+        console.log("matched: " + JSON.stringify(value.channel))
+        this.channels = value.channel
+      }
+    })
+    console.log(this.channels)
+    Object.entries(this.channels).forEach(([key,value], index) => {
+      this.channeltitle.push(value.title)
+    })
+    console.log("Titles: " + this.channeltitle)
   }
 }
