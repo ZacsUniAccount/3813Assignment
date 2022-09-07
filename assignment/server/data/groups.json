@@ -1,24 +1,24 @@
 [
-    {
-        "group1": {
-            "users": [
-                "user1",
-                "user2"
-            ],
-            "channels": [
-                {"user": "user1", "permission": 0},
-                {"user": "user2", "permission": 1}
-            ] 
+        {
+            "title": "group1",
+            "users": "user1",
+            "channel": [
+                {
+                    "title": "channel1",
+                    "users": "user1"
+                }
+            ]
         },
-        "group2": {
-            "users": [
-                "user1",
-                "user2"
-            ],
-            "channels": [
-                {"user": "user1", "permission": 0},
-                {"user": "user2", "permission": 1}
-            ] 
+        {
+            "title": "group2",
+            "users": "user1",
+            "channel": [
+                {
+                    "title": "channel1",
+                    "users": "user1"
+                }
+            ]
         }
-    }
-]
+    ]
+
+    

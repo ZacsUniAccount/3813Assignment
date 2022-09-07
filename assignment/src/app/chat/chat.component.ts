@@ -18,6 +18,9 @@ export class ChatComponent implements OnInit {
   userobj!: UserObjService
   username!: string
   role!: string
+  groups!: object
+  selectedGroup!: string
+  grouptitle = Array()
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -37,7 +40,11 @@ export class ChatComponent implements OnInit {
   getGroups() {
     this.httpClient.get(BACKEND_URL + "/api/allGroups")
       .subscribe((data: any) => {
-        console.log(JSON.stringify(data.groups))
+        this.groups = data.groups
+        Object.entries(this.groups).forEach(([key, value], index) => {
+          this.grouptitle.push(value.title)
+        })
   });
+  console.log(this.grouptitle)
   }
 }
