@@ -1,8 +1,24 @@
 [
     {
-        "Gaming": ["gaming_1", "gaming_2"]
-    },
-    {
-        "Sport": ["sport_1", "sport_2"]
+        "group1": {
+            "users": [
+                "user1",
+                "user2"
+            ],
+            "channels": [
+                {"user": "user1", "permission": 0},
+                {"user": "user2", "permission": 1}
+            ] 
+        },
+        "group2": {
+            "users": [
+                "user1",
+                "user2"
+            ],
+            "channels": [
+                {"user": "user1", "permission": 0},
+                {"user": "user2", "permission": 1}
+            ] 
+        }
     }
 ]

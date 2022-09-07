@@ -21,3 +21,4 @@ app.post('/api/auth', require('./router/postLogin'));
 app.post('/api/newUser', require('./router/newUser'));
 app.get('/api/allUsers', require('./router/allUsers'));
 app.post('/api/deleteUser', require('./router/deleteUser'));
+app.get('/api/allGroups', require('./router/allGroups'));
