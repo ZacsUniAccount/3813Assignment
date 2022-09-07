@@ -35,16 +35,16 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div *ngIf="role != 'user'" class="d-grid">
-                                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Join Chat</button>
+                                            <button (click)="chatClicked()" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Join Chat</button>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div *ngIf="role != 'user'" class="d-grid">
-                                            <button (click)="optionsClicked()" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Options</button>
+                                            <button (click)="usersClicked()" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Edit Users</button>
                                         </div>
                                     </div>
                                     <div *ngIf="role == 'user'" class="d-grid">
-                                        <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Join Chat</button>
+                                        <button (click)="chatClicked()" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Join Chat</button>
                                     </div>
                                 </div>
                                 <ul class="social-link list-unstyled m-t-40 m-b-10">

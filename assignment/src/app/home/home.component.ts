@@ -27,8 +27,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  optionsClicked(){
-    this.router.navigateByUrl('options')
+  usersClicked(){
+    this.router.navigateByUrl('newuser')
+  }
+
+  chatClicked(){
+    this.router.navigateByUrl('chat')
   }
 
   logout() {
