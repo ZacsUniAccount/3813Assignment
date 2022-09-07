@@ -20,7 +20,8 @@
                             </div>
                             <div *ngIf="super" class="form-floating mb-3">
                                 <select [(ngModel)]="newRole" name="newRole" class="custom-select custom-select-sm w-auto mr-1">
-                                    <option selected value="user">User</option>
+                                    <option disabled value="undefined">Select Role</option>
+                                    <option value="user">User</option>
                                     <option value="group admin">Group Admin</option>
                                     <option value="super admin">Super Admin</option>
                                 </select>
