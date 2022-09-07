@@ -42,8 +42,12 @@
                                 <div *ngIf="super" class="form-floating mb-3 m-3">
                                     <select [(ngModel)]="selectedUser" name="selectedUser" class="custom-select custom-select-sm w-auto mr-1">
                                         <option disabled value="undefined">Select User to remove</option>
-                                        <option *ngFor="let i of activeUsers" value="user">{{i}}</option>
+                                        <option *ngFor="let i of activeUsers" value="{{i}}">{{i}}</option>
                                     </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button (click)="removeClicked()"
+                                        class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Remove User</button>
                                 </div>
                                 <div class="d-grid">
                                     <hr class="my-4"/>

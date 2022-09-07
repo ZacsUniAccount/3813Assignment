@@ -59,14 +59,23 @@ export class NewuserComponent implements OnInit {
       console.log(JSON.stringify(this.userobj))
       this.httpClient.post(BACKEND_URL + "/api/newuser", this.userobj, httpOptions)
         .subscribe((data: any) => {
-          if (data.valid) {
-            alert(data.msg)
-          } else {
-            alert(data.msg)
-          }
+          alert(data.msg)
         })
     }
-    this.getUsers
+    this.getUsers()
+  }
+
+  removeClicked(){
+    let remove = {'user': this.selectedUser}
+    console.log(remove)
+    if (this.selectedUser == "super") { alert("super can not be removed, they are the main admin.")} else {
+      this.httpClient.post(BACKEND_URL + '/api/deleteUser', remove, httpOptions)
+        .subscribe((data: any) => {
+          alert(data.msg)
+          this.getUsers()
+        })
+    }
+    
   }
 
   backClicked(){
