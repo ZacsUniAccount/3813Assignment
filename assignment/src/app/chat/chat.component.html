@@ -219,12 +219,10 @@
                 <!-- Inner sidebar header -->
                 <div class="inner-sidebar-header justify-content-center">
                     <div class="inner-main-header">
-                        <select class="custom-select custom-select-sm w-auto mr-1">
-                            <option selected="">GROUPS</option>
-                            <option value="1">GROUP1</option>
-                            <option value="3">GROUP2</option>
-                            <option value="3">GROUP3</option>
-                            <option value="3">GROUP4</option>
+                        <select (click)="getMembers()" [(ngModel)]="membertype" name="membertype"
+                            class="custom-select custom-select-sm w-auto mr-1">
+                            <option value="group">Group Members</option>
+                            <option value="channel">Channel Members</option>
                         </select>
                     </div>
                 </div>

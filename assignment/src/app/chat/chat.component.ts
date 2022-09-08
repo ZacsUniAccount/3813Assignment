@@ -28,7 +28,9 @@ export class ChatComponent implements OnInit {
   channeltitle = Array()
   grouptitle = Array()
   addgroup!: string;
-  addchannel!: string;
+  addchannel: string = "";
+  members = Array()
+  membertype = "group";
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -47,30 +49,36 @@ export class ChatComponent implements OnInit {
 
   //Find all groups and list them
   getGroups() {
-    this.grouptitle = []
-    this.httpClient.get(BACKEND_URL + "/api/allGroups")
-      .subscribe((data: any) => {
-        this.groups = data.groups
-
-        //foreach group
-        Object.entries(this.groups).forEach(([key, value], index) => {
-          if (this.role == 'user'){ //if role is user
-            value.users.forEach((user:any) => { //search through groups to find members with same username
-              if(this.username == user){
-                this.grouptitle.push(value.title)
-              }
-            });
-          } else { //if role !user
-            this.grouptitle.push(value.title) //add all groups
-          }
-        })
-  });
+    return new Promise((resolve) => {
+      //const xhr = new XMLHttpRequest();
+      this.grouptitle = []
+      this.httpClient.get(BACKEND_URL + "/api/allGroups")
+        .subscribe((data: any) => {
+          this.groups = data.groups
+  
+          //foreach group
+          Object.entries(this.groups).forEach(([key, value], index) => {
+            if (this.role == 'user'){ //if role is user
+              value.users.forEach((user:any) => { //search through groups to find members with same username
+                if(this.username == user){
+                  this.grouptitle.push(value.title)
+                }
+              });
+            } else { //if role !user
+              this.grouptitle.push(value.title) //add all groups
+            }
+          })
+          resolve("done")
+    });
+    });
+    
   //console.log(this.grouptitle)
   }
 
 
   //List all channels from group
   getChannel() {
+    console.log("getChannel running")
     this.channeltitle = []
     Object.entries(this.groups).forEach(([key, value], index) => {
       if(this.selectedGroup == value.title){
@@ -87,6 +95,7 @@ export class ChatComponent implements OnInit {
       } else {
       this.channeltitle.push(value.title)
       }
+      console.log(this.channeltitle)
     })
   }
 
@@ -110,11 +119,47 @@ export class ChatComponent implements OnInit {
   
   addchannelClicked(){
     let channeltoadd = {"group": this.selectedGroup, "channel": {"title": this.addchannel, "users": []}}
-    this.httpClient.post(BACKEND_URL + "/api/addChannel", channeltoadd, httpOptions)
-        .subscribe((data: any) => {
-          alert(data.msg)
-          this.addchannel = ""
-          this.getChannel()
-        })
+    if (this.addchannel != ""){
+      this.httpClient.post(BACKEND_URL + "/api/addChannel", channeltoadd, httpOptions)
+      .subscribe((data: any) => {
+        alert(data.msg)
+        this.addchannel = ""
+        this.getGroups()
+          .then(() => this.getChannel())
+        
+      })
+    }
+  }
+
+  getMembers(){
+    this.members = []
+    console.log(this.membertype)
+    if(this.membertype == "group"){
+      Object.entries(this.groups).forEach(([key, value], index) => {
+        if(this.selectedGroup == value.title){
+          this.members.push(value.users)
+          console.log(this.members)
+        }
+      })
+    } else {
+      /*
+      Object.entries(this.groups).forEach(([key, value], index) => {
+        if(this.selectedGroup == value.title){
+          this.channels = value.channel
+        }
+      })
+      Object.entries(this.channels).forEach(([key,value], index) => {
+        if (this.role == 'user'){
+          value.users.forEach((user: any) => {
+            if (this.username == user) {
+              this.members.push(value.title)
+            }
+          });
+        } else {
+        this.members.push(value.title)
+        }
+        console.log(this.channeltitle)
+      })*/
+    }
   }
 }

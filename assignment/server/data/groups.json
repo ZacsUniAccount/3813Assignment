@@ -2,17 +2,20 @@
     {
         "title": "group1",
         "users": [
-            "1user1",
-            "1user2",
-            "user"
+            "group",
+            "group2",
+            "channel1",
+            "channel2",
+            "super"
         ],
         "channel": [
             {
                 "title": "Group1 Channel1",
                 "users": [
                     "super",
-                    "11user2",
-                    "user"
+                    "channel2",
+                    "channel"
+
                 ]
             },
             {
@@ -23,15 +26,11 @@
                 ]
             },
             {
-                "title": "gbhjk",
+                "title": "Another channel ",
                 "users": []
             },
             {
-                "title": "",
-                "users": []
-            },
-            {
-                "title": "aaa",
+                "title": "dsa",
                 "users": []
             }
         ]
@@ -56,22 +55,49 @@
                     "22user1",
                     "22user2"
                 ]
-            },
-            {
-                "title": "new channel?",
-                "users": []
             }
         ]
     },
     {
         "title": "Sport",
         "users": [],
-        "channel": []
+        "channel": [
+            {
+                "title": "as",
+                "users": []
+            },
+            {
+                "title": "assaas",
+                "users": []
+            },
+            {
+                "title": "saas",
+                "users": []
+            }
+        ]
     },
     {
-        "channel": {
-            "title": "asa",
-            "users": []
-        }
+        "title": "Tahlias group",
+        "users": [],
+        "channel": [
+            {
+                "title": "Lollies",
+                "users": []
+            },
+            {
+                "title": "friends",
+                "users": []
+            }
+        ]
+    },
+    {
+        "title": "Hayden",
+        "users": [],
+        "channel": [
+            {
+                "title": "Hayden work",
+                "users": []
+            }
+        ]
     }
 ]
