@@ -133,7 +133,6 @@ export class ChatComponent implements OnInit {
 
   getMembers(){
     this.members = []
-    console.log(this.membertype)
     if(this.membertype == "group"){
       Object.entries(this.groups).forEach(([key, value], index) => {
         if(this.selectedGroup == value.title){
@@ -142,24 +141,17 @@ export class ChatComponent implements OnInit {
         }
       })
     } else {
-      /*
       Object.entries(this.groups).forEach(([key, value], index) => {
-        if(this.selectedGroup == value.title){
-          this.channels = value.channel
+        if(this.selectedGroup == value.title){     
+          Object.entries(this.channels).forEach(([key, c], index) => {
+            if(this.selectedChannel == c.title) {
+              console.log("matched: " + this.selectedChannel)
+              this.members.push(c.users)
+            }
+          })
         }
       })
-      Object.entries(this.channels).forEach(([key,value], index) => {
-        if (this.role == 'user'){
-          value.users.forEach((user: any) => {
-            if (this.username == user) {
-              this.members.push(value.title)
-            }
-          });
-        } else {
-        this.members.push(value.title)
-        }
-        console.log(this.channeltitle)
-      })*/
     }
+    console.log(this.members)
   }
 }
