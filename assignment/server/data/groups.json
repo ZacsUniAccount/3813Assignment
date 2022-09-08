@@ -21,6 +21,18 @@
                     "12user1",
                     "12user2"
                 ]
+            },
+            {
+                "title": "gbhjk",
+                "users": []
+            },
+            {
+                "title": "",
+                "users": []
+            },
+            {
+                "title": "aaa",
+                "users": []
             }
         ]
     },
@@ -44,6 +56,10 @@
                     "22user1",
                     "22user2"
                 ]
+            },
+            {
+                "title": "new channel?",
+                "users": []
             }
         ]
     },
@@ -51,5 +67,11 @@
         "title": "Sport",
         "users": [],
         "channel": []
+    },
+    {
+        "channel": {
+            "title": "asa",
+            "users": []
+        }
     }
 ]

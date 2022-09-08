@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit {
   channeltitle = Array()
   grouptitle = Array()
   addgroup!: string;
+  addchannel!: string;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -98,15 +99,22 @@ export class ChatComponent implements OnInit {
   }
 
   addgroupClicked() {
-    let temp: GroupService = {"title": this.addgroup, "users": [], "channel":[]}
-    console.log(temp)
-    this.httpClient.post(BACKEND_URL + "/api/addGroup", temp, httpOptions)
+    let grouptoadd: GroupService = {"title": this.addgroup, "users": [], "channel":[]}
+    this.httpClient.post(BACKEND_URL + "/api/addGroup", grouptoadd, httpOptions)
         .subscribe((data: any) => {
           alert(data.msg)
           this.addgroup = ""
           this.getGroups()
         })
-        
   }
   
+  addchannelClicked(){
+    let channeltoadd = {"group": this.selectedGroup, "channel": {"title": this.addchannel, "users": []}}
+    this.httpClient.post(BACKEND_URL + "/api/addChannel", channeltoadd, httpOptions)
+        .subscribe((data: any) => {
+          alert(data.msg)
+          this.addchannel = ""
+          this.getChannel()
+        })
+  }
 }

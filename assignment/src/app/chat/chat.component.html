@@ -51,7 +51,14 @@
                                                             class="nav-link nav-link-faded has-icon">{{channel}}</a>
                                                     </ul>
                                                 </li>
+                                                
                                             </nav>
+                                            <div class="m-1">
+                                                <input type="text" class="form-control" id="addchannel" placeholder="New Channel"
+                                                    [(ngModel)]="addchannel" name="addchannel"/>
+                                                <button class="btn btn-block btn-primary form-control text-uppercase fw-bold " 
+                                                    (click)="addchannelClicked()">add channel</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
