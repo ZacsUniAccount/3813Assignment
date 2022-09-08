@@ -25,9 +25,9 @@
                     </div>
                 </div>
                 <div class="m-1">
-                    <input type="text" class="form-control" id="addgroup" placeholder="New Group"
-                        [(ngModel)]="addgroup" name="addgroup"/>
-                    <button class="btn btn-block btn-primary form-control text-uppercase fw-bold " 
+                    <input type="text" class="form-control" id="addgroup" placeholder="New Group" [(ngModel)]="addgroup"
+                        name="addgroup" />
+                    <button class="btn btn-block btn-primary form-control text-uppercase fw-bold "
                         (click)="addgroupClicked()">add group</button>
                 </div>
                 <!-- /Inner sidebar header -->
@@ -51,12 +51,14 @@
                                                             class="nav-link nav-link-faded has-icon">{{channel}}</a>
                                                     </ul>
                                                 </li>
-                                                
+
                                             </nav>
                                             <div class="m-1">
-                                                <input type="text" class="form-control" id="addchannel" placeholder="New Channel"
-                                                    [(ngModel)]="addchannel" name="addchannel"/>
-                                                <button class="btn btn-block btn-primary form-control text-uppercase fw-bold " 
+                                                <input type="text" class="form-control" id="addchannel"
+                                                    placeholder="New Channel" [(ngModel)]="addchannel"
+                                                    name="addchannel" />
+                                                <button
+                                                    class="btn btn-block btn-primary form-control text-uppercase fw-bold "
                                                     (click)="addchannelClicked()">add channel</button>
                                             </div>
                                         </div>
@@ -241,12 +243,11 @@
                                         style="height: 100%; overflow: hidden scroll;">
                                         <div class="simplebar-content" style="padding: 16px;">
                                             <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                <a href="javascript:void(0)"
-                                                    class="nav-link nav-link-faded has-icon">Channel 1</a>
-                                                <a href="javascript:void(0)"
-                                                    class="nav-link nav-link-faded has-icon">Channel 2</a>
-                                                <a href="javascript:void(0)"
-                                                    class="nav-link nav-link-faded has-icon">Channel 3</a>
+                                                <li *ngFor="let member of members">
+                                                    <ul >
+                                                        {{member}}
+                                                    </ul>
+                                                </li>
                                             </nav>
                                         </div>
                                     </div>

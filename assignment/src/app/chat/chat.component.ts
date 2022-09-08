@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
   grouptitle = Array()
   addgroup!: string;
   addchannel: string = "";
-  members = Array()
+  members = Array();
   membertype = "group";
 
   constructor(private router: Router, private httpClient: HttpClient) { }
@@ -78,7 +78,7 @@ export class ChatComponent implements OnInit {
 
   //List all channels from group
   getChannel() {
-    console.log("getChannel running")
+    //console.log("getChannel running")
     this.channeltitle = []
     Object.entries(this.groups).forEach(([key, value], index) => {
       if(this.selectedGroup == value.title){
@@ -95,12 +95,14 @@ export class ChatComponent implements OnInit {
       } else {
       this.channeltitle.push(value.title)
       }
-      console.log(this.channeltitle)
+      //console.log(this.channeltitle)
     })
+    this.getMembers()
   }
 
   channelClicked(channel: string){
     this.selectedChannel = channel
+    this.getMembers()
   }
 
   backClicked() {
@@ -126,7 +128,6 @@ export class ChatComponent implements OnInit {
         this.addchannel = ""
         this.getGroups()
           .then(() => this.getChannel())
-        
       })
     }
   }
@@ -137,7 +138,7 @@ export class ChatComponent implements OnInit {
       Object.entries(this.groups).forEach(([key, value], index) => {
         if(this.selectedGroup == value.title){
           this.members.push(value.users)
-          console.log(this.members)
+          this.members = value.users
         }
       })
     } else {
@@ -145,8 +146,8 @@ export class ChatComponent implements OnInit {
         if(this.selectedGroup == value.title){     
           Object.entries(this.channels).forEach(([key, c], index) => {
             if(this.selectedChannel == c.title) {
-              console.log("matched: " + this.selectedChannel)
-              this.members.push(c.users)
+              //console.log("matched: " + this.selectedChannel)
+              this.members = c.users
             }
           })
         }
