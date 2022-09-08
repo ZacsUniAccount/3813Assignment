@@ -1,1 +1,30 @@
-[{"title":"Demonstration","users":["group_user","channel1 user","channel2 user"],"channel":[{"title":"channel1","users":["channel1 user", "user"]},{"title":"channel2","users":["channel2 user"]}]},{"title":"Group1","users":[],"channel":[]}]
+[
+    {
+        "title": "Demonstration",
+        "users": [
+            "group_user",
+            "channel1 user",
+            "channel2 user"
+        ],
+        "channel": [
+            {
+                "title": "channel1",
+                "users": [
+                    "channel1 user",
+                    "user"
+                ]
+            },
+            {
+                "title": "channel2",
+                "users": [
+                    "channel2 user"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Group1",
+        "users": [],
+        "channel": []
+    }
+]
