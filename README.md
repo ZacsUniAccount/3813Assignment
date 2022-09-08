@@ -2,25 +2,21 @@
 
 ## GIT LAYOUT
 The git repository contains an ‘assignment’ folder, with the files of the project inside, as well as a ‘readme’ to let users know about the project and ‘commands.txt’ file to help remember the console commands to use. The branch is up to date on ‘main’. 
+
 For version control, I would complete a small task the project required, check it worked correctly, and then commit with a description of what was added. I did not have the need to make branches as I was the only one working on this project.
 
 ## DATA STRUCTURES
 The data structures I used in this program were ‘groups’, ‘channels’ and ‘users’. 
 All these structures are objects. ‘users’ is the simplest and only contains a ‘name’, ‘email’ and ‘role’. The name is for logging in and displaying when logged in, email is not yet implemented, and ‘role’ determines what the user can view in the website, and what permissions they can control.
+ 
 The ‘groups’ object contains a ‘title’ with the name of the group, it also contains ‘users’ to keep track of who is in the group, as well as an array of ‘channels’
 ‘channels’ contained a ‘title’ with the name of the channel, and an array of ‘users’ who belong in that channel
 A tree of the data structures can be seen below
-Users:
-	Name
-	Email
-	Role
 
-Groups:
-	Title
-	[Users]
-	[Channels]:
-		Title
-		[users].
+[Users:	Name, Email, Role]
+
+[Groups: Title, [Users], [Channels]: {Title, [users]}
+
 These structures have class files inside their corresponding angular services, and are stored as a JSON files on the server side in /server/data.
 
 
