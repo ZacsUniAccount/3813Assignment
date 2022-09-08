@@ -30,7 +30,7 @@
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                             <li>
-                                                <ul *ngFor="let channel of channeltitle"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">{{channel}}</a></ul>
+                                                <ul *ngFor="let channel of channeltitle" (click)="channelClicked(channel)"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">{{channel}}</a></ul>
                                             </li>
                                         </nav>
                                     </div>
@@ -63,7 +63,7 @@
         <div class="inner-main">
             <!-- Inner main header -->
             <div class="inner-main-header">
-                <h2>Group: {{selectedGroup}} Channel: </h2>
+                <h2>Group: {{selectedGroup}} Channel: {{selectedChannel}}</h2>
             </div>
             <!-- /Inner main header -->
             <!-- Inner main body -->
