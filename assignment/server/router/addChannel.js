@@ -11,7 +11,7 @@ module.exports = function(req, res) {
         if (err) throw err;
         let groupArray = JSON.parse(data);
         let i = groupArray.findIndex(group => (group.title == g));
-        if (i == -1) {alert("Cannot add channel to group, as group does not exist")} else {
+        if (i == -1) {console.log("Cannot add channel to group, as group does not exist")} else {
             let selectedGroup = groupArray[i]
             let x = selectedGroup.channel.findIndex(c => c.title == channel.title)
             if (x != -1) { res.send({"msg": "Channel already exists"}) } else {

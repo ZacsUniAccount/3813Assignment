@@ -249,6 +249,17 @@
                                                     </ul>
                                                 </li>
                                             </nav>
+                                            <div class="m-1">
+                                                <input type="text" class="form-control" id="newUser"
+                                                    placeholder="User Name" [(ngModel)]="newUser"
+                                                    name="newUser" />
+                                                <button
+                                                    class="btn btn-block btn-primary form-control text-uppercase fw-bold " (click)="addUser()"
+                                                    >add to {{membertype}}</button>
+                                                    <button
+                                                    class="btn btn-block btn-primary form-control text-uppercase fw-bold "
+                                                    >remove user</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
