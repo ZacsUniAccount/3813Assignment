@@ -2,6 +2,7 @@ const { json } = require('express');
 var fs = require('fs');
 
 module.exports = function(req, res) {   
+    console.log("deleteUser running");
     selectedUser = req.body.user;
 
     fs.readFile('./server/data/users.json', 'utf8', function(err, data) {

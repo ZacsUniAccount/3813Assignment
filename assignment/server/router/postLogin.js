@@ -1,6 +1,7 @@
 var fs = require('fs');
 const testmode = false
 module.exports = function(req, res) {
+    console.log("postLogin running");
     console.log(req.body)
     var u = req.body.username;
     /*var p = req.body.pwd;

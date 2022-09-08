@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 module.exports = function(req, res) {
+    console.log("newUser running");
     console.log(req.body);
     userobj = req.body;
     let u = userobj.username;

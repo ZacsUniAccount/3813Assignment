@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 module.exports = function(req, res) {
+    console.log("allGroups running");
     let gArray;
     
     fs.readFile('./server/data/groups.json', 'utf8', function(err, data) {

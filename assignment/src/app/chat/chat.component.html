@@ -1,214 +1,275 @@
 <!-- Created using the template at: https://www.bootdey.com/snippets/view/bs4-forum -->
 <!-- And from: https://www.bootdey.com/snippets/view/white-chat#html -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+    integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+
 <div class="container">
-<div class="main-body p-0">
-    <div class="inner-wrapper">
-        <!-- Inner sidebar -->
-        <div class="inner-sidebar">
-            <!-- Inner sidebar header -->
-            <div class="inner-sidebar-header justify-content-center">
+    <div class="main-body p-0">
+
+        <div class="inner-wrapper">
+
+            <!-- Inner sidebar -->
+            <div class="inner-sidebar">
+
+                <!-- Inner sidebar header -->
+                <div class="inner-sidebar-header justify-content-center">
+                    <div class="inner-main-header">
+
+                        <select (click)="getChannel()" [(ngModel)]="selectedGroup" name="selectedGroup"
+                            class="custom-select custom-select-sm w-auto mr-1">
+                            <option disabled value="undefined">Select Group</option>
+                            <option *ngFor="let i of grouptitle" value="{{i}}">{{i}}</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="m-1">
+                    <input type="text" class="form-control" id="addgroup" placeholder="New Group"
+                        [(ngModel)]="addgroup" name="addgroup"/>
+                    <button class="btn btn-block btn-primary form-control text-uppercase fw-bold " 
+                        (click)="addgroupClicked()">add group</button>
+                </div>
+                <!-- /Inner sidebar header -->
+
+                <!-- Inner sidebar body -->
+                <div class="inner-sidebar-body p-0">
+                    <div class="p-3 h-100" data-simplebar="init">
+                        <div class="simplebar-wrapper" style="margin: -16px;">
+                            <div class="simplebar-height-auto-observer-wrapper">
+                                <div class="simplebar-height-auto-observer"></div>
+                            </div>
+                            <div class="simplebar-mask">
+                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                    <div class="simplebar-content-wrapper"
+                                        style="height: 100%; overflow: hidden scroll;">
+                                        <div class="simplebar-content" style="padding: 16px;">
+                                            <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                                <li>
+                                                    <ul *ngFor="let channel of channeltitle"
+                                                        (click)="channelClicked(channel)"><a href="javascript:void(0)"
+                                                            class="nav-link nav-link-faded has-icon">{{channel}}</a>
+                                                    </ul>
+                                                </li>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="simplebar-placeholder" style="width: 234px; height: 0px;"></div>
+                        </div>
+                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                        </div>
+                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                            <div class="simplebar-scrollbar"
+                                style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /Inner sidebar body -->
+            </div>
+            <!-- /Inner sidebar -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Inner main -->
+            <div class="inner-main">
+                <!-- Inner main header -->
                 <div class="inner-main-header">
-                    <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                    <select (click)="getChannel()" [(ngModel)]="selectedGroup" name="selectedGroup" class="custom-select custom-select-sm w-auto mr-1">
-                        <option disabled value="undefined">Select Group</option>
-                        <option *ngFor="let i of grouptitle" value="{{i}}">{{i}}</option>
-                    </select>
+                    <h2>Group: {{selectedGroup}} Channel: {{selectedChannel}}</h2>
                 </div>
-            </div>
-            <!-- /Inner sidebar header -->
+                <!-- /Inner main header -->
+                <!-- Inner main body -->
+                <!-- Chat List -->
+                <main class="content">
+                    <div class="container p-0">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-12 col-lg-7 col-xl-9">
+                                    <div class="position-relative">
+                                        <div class="chat-messages p-4">
 
-            <!-- Inner sidebar body -->
-            <div class="inner-sidebar-body p-0">
-                <div class="p-3 h-100" data-simplebar="init">
-                    <div class="simplebar-wrapper" style="margin: -16px;">
-                        <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
-                        <div class="simplebar-mask">
-                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
-                                    <div class="simplebar-content" style="padding: 16px;">
-                                        <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <li>
-                                                <ul *ngFor="let channel of channeltitle" (click)="channelClicked(channel)"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">{{channel}}</a></ul>
-                                            </li>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
-                    </div>
-                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
-                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
-                </div>
-            </div>
-            <!-- /Inner sidebar body -->
-        </div>
-        <!-- /Inner sidebar -->
-        
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Inner main -->
-        <div class="inner-main">
-            <!-- Inner main header -->
-            <div class="inner-main-header">
-                <h2>Group: {{selectedGroup}} Channel: {{selectedChannel}}</h2>
-            </div>
-            <!-- /Inner main header -->
-            <!-- Inner main body -->
-            <!-- Chat List -->
-            <main class="content">
-                <div class="container p-0">
-                    <div class="card">
-                        <div class="row g-0">
-                            <div class="col-12 col-lg-7 col-xl-9">            
-                                <div class="position-relative">
-                                    <div class="chat-messages p-4">
-            
-                                        <div class="chat-message-right pb-4">
-                                            <div>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
+                                                        height="40">
+                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                    <div class="font-weight-bold mb-1">You</div>
+                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
+                                                    vix.
+                                                </div>
                                             </div>
-                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1">You</div>
-                                                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
+                                                        height="40">
+                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                    <div class="font-weight-bold mb-1">You</div>
+                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
+                                                    vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt
+                                                    prodesset te vix.
+                                                </div>
                                             </div>
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
+                                                        height="40">
+                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                    <div class="font-weight-bold mb-1">You</div>
+                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
+                                                    vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt
+                                                    prodesset te vix. Lorem ipsum dolor sit amet, vis erat denique in,
+                                                    dicunt prodesset te vix.
+                                                </div>
+                                            </div>
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
+                                                        height="40">
+                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                    <div class="font-weight-bold mb-1">You</div>
+                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
+                                                    vix.
+                                                </div>
+                                            </div>
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
+                                                        height="40">
+                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                    <div class="font-weight-bold mb-1">You</div>
+                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
+                                                    vix.
+                                                </div>
+                                            </div>
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
+                                                        height="40">
+                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                    <div class="font-weight-bold mb-1">You</div>
+                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
+                                                    vix.
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div class="chat-message-right pb-4">
-                                            <div>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                            </div>
-                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1">You</div>
-                                                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                            </div>
-                                        </div><div class="chat-message-right pb-4">
-                                            <div>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                            </div>
-                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1">You</div>
-                                                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                            </div>
-                                        </div><div class="chat-message-right pb-4">
-                                            <div>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                            </div>
-                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1">You</div>
-                                                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                            </div>
-                                        </div><div class="chat-message-right pb-4">
-                                            <div>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                            </div>
-                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1">You</div>
-                                                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                            </div>
-                                        </div><div class="chat-message-right pb-4">
-                                            <div>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                            </div>
-                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1">You</div>
-                                                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                            </div>
+                                    </div>
+
+                                    <div class="flex-grow-0 py-3 px-4 border-top">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Type your message">
+                                            <button class="btn btn-primary">Send</button>
                                         </div>
-            
-                                    </div>
-                                </div>
-            
-                                <div class="flex-grow-0 py-3 px-4 border-top">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Type your message">
-                                        <button class="btn btn-primary">Send</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
+                </main>
 
-            <!-- /Chat List -->
+                <!-- /Chat List -->
 
-            <!-- /Inner main body -->
-        </div>
-        
-
-
-
-
-<!-- Inner sidebar -->
-<div class="inner-right">
-    <!-- Inner sidebar header -->
-    <div class="inner-sidebar-header justify-content-center">
-        <div class="inner-main-header">
-            <select class="custom-select custom-select-sm w-auto mr-1">
-                <option selected="">GROUPS</option>
-                <option value="1">GROUP1</option>
-                <option value="3">GROUP2</option>
-                <option value="3">GROUP3</option>
-                <option value="3">GROUP4</option>
-            </select>
-        </div>
-    </div>
-    <!-- /Inner sidebar header -->
-
-    <!-- Inner sidebar body -->
-    <div class="inner-sidebar-body p-0">
-        <div class="p-3 h-100" data-simplebar="init">
-            <div class="simplebar-wrapper" style="margin: -16px;">
-                <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
-                <div class="simplebar-mask">
-                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                        <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
-                            <div class="simplebar-content" style="padding: 16px;">
-                                <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Channel 1</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Channel 2</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Channel 3</a>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                <!-- /Inner main body -->
             </div>
-            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
-            <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+
+
+
+
+
+            <!-- Inner sidebar -->
+            <div class="inner-right">
+                <!-- Inner sidebar header -->
+                <div class="inner-sidebar-header justify-content-center">
+                    <div class="inner-main-header">
+                        <select class="custom-select custom-select-sm w-auto mr-1">
+                            <option selected="">GROUPS</option>
+                            <option value="1">GROUP1</option>
+                            <option value="3">GROUP2</option>
+                            <option value="3">GROUP3</option>
+                            <option value="3">GROUP4</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- /Inner sidebar header -->
+
+                <!-- Inner sidebar body -->
+                <div class="inner-sidebar-body p-0">
+                    <div class="p-3 h-100" data-simplebar="init">
+                        <div class="simplebar-wrapper" style="margin: -16px;">
+                            <div class="simplebar-height-auto-observer-wrapper">
+                                <div class="simplebar-height-auto-observer"></div>
+                            </div>
+                            <div class="simplebar-mask">
+                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                    <div class="simplebar-content-wrapper"
+                                        style="height: 100%; overflow: hidden scroll;">
+                                        <div class="simplebar-content" style="padding: 16px;">
+                                            <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                                <a href="javascript:void(0)"
+                                                    class="nav-link nav-link-faded has-icon">Channel 1</a>
+                                                <a href="javascript:void(0)"
+                                                    class="nav-link nav-link-faded has-icon">Channel 2</a>
+                                                <a href="javascript:void(0)"
+                                                    class="nav-link nav-link-faded has-icon">Channel 3</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                        </div>
+                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                        </div>
+                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                            <div class="simplebar-scrollbar"
+                                style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Inner sidebar body -->
+            </div>
+
+
+
+
+
+
+
+
+            <!-- /Inner main -->
         </div>
+
     </div>
-    <!-- /Inner sidebar body -->
-</div>
-
-
-
-
-
-
-
-
-        <!-- /Inner main -->
-    </div>
-    
-</div>
 </div>

@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
   selectedChannel!: string
   channeltitle = Array()
   grouptitle = Array()
+  addgroup!: string;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -45,6 +46,7 @@ export class ChatComponent implements OnInit {
 
   //Find all groups and list them
   getGroups() {
+    this.grouptitle = []
     this.httpClient.get(BACKEND_URL + "/api/allGroups")
       .subscribe((data: any) => {
         this.groups = data.groups
@@ -71,11 +73,9 @@ export class ChatComponent implements OnInit {
     this.channeltitle = []
     Object.entries(this.groups).forEach(([key, value], index) => {
       if(this.selectedGroup == value.title){
-        //console.log("matched: " + JSON.stringify(value.channel))
         this.channels = value.channel
       }
     })
-    //console.log(this.channels)
     Object.entries(this.channels).forEach(([key,value], index) => {
       if (this.role == 'user'){
         value.users.forEach((user: any) => {
@@ -92,4 +92,21 @@ export class ChatComponent implements OnInit {
   channelClicked(channel: string){
     this.selectedChannel = channel
   }
+
+  backClicked() {
+    this.router.navigateByUrl('home')
+  }
+
+  addgroupClicked() {
+    let temp: GroupService = {"title": this.addgroup, "users": [], "channel":[]}
+    console.log(temp)
+    this.httpClient.post(BACKEND_URL + "/api/addGroup", temp, httpOptions)
+        .subscribe((data: any) => {
+          alert(data.msg)
+          this.addgroup = ""
+          this.getGroups()
+        })
+        
+  }
+  
 }

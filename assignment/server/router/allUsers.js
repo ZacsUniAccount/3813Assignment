@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 module.exports = function(req, res) {
+    console.log("allUsers running");
     let uArray = [];
     
     fs.readFile('./server/data/users.json', 'utf8', function(err, data) {

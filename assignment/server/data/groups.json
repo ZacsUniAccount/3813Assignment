@@ -1,32 +1,55 @@
 [
-        {
-            "title": "group1",
-            "users": ["1user1", "1user2", "user"],
-            "channel": [
-                {
-                    "title": "Group1 Channel1",
-                    "users": ["super", "11user2", "user"]
-                },
-                {
-                    "title": "Group1 Channel2`",
-                    "users": ["12user1", "12user2"]
-                }
-            ]
-        },
-        {
-            "title": "group2",
-            "users": ["2user1", "2user2"],
-            "channel": [
-                {
-                    "title": "Group2 Channel1",
-                    "users": ["21user1", "21user2"]
-                },
-                {
-                    "title": "Group2 Channel2",
-                    "users": ["22user1", "22user2"]
-                }
-            ]
-        }
-    ]
-
-    
+    {
+        "title": "group1",
+        "users": [
+            "1user1",
+            "1user2",
+            "user"
+        ],
+        "channel": [
+            {
+                "title": "Group1 Channel1",
+                "users": [
+                    "super",
+                    "11user2",
+                    "user"
+                ]
+            },
+            {
+                "title": "Group1 Channel2`",
+                "users": [
+                    "12user1",
+                    "12user2"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "group2",
+        "users": [
+            "2user1",
+            "2user2"
+        ],
+        "channel": [
+            {
+                "title": "Group2 Channel1",
+                "users": [
+                    "21user1",
+                    "21user2"
+                ]
+            },
+            {
+                "title": "Group2 Channel2",
+                "users": [
+                    "22user1",
+                    "22user2"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Sport",
+        "users": [],
+        "channel": []
+    }
+]

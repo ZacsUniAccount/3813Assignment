@@ -22,3 +22,7 @@ app.post('/api/newUser', require('./router/newUser'));
 app.get('/api/allUsers', require('./router/allUsers'));
 app.post('/api/deleteUser', require('./router/deleteUser'));
 app.get('/api/allGroups', require('./router/allGroups'));
+app.post('/api/addGroup', require('./router/addGroup'));
+//app.post('/api/addGroupUser', require('./router/addGroupUser')); 
+//app.post('api/addChannel', require('./router/addChannel')); 
+//app.post('api/addChannelUser', require('./router/addChannelUser')); 
