@@ -4,7 +4,8 @@
         "users": [
             "group_user",
             "channel1 user",
-            "channel2 user"
+            "channel2 user",
+            "user"
         ],
         "channel": [
             {

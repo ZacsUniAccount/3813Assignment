@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(express.static(__dirname + '/../dist/week4tut'));
 console.log(__dirname);
 
+const MongoClient = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectId
+
 const PORT = 3000;
 const http = require('http').Server(app);
 const server = require('./listen.js');
