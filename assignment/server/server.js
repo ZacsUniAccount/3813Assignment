@@ -30,7 +30,7 @@ MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, func
     const db = client.db(dbName)
 
     require('./mongo/add.js')(db,app)
-    require('./mongo/read.js')(db,app)
+    require('./mongo/login.js')(db,app)
     /*
     require('./mongo/update.js')(db,app, ObjectID)
     require('./mongo/remove.js')(db,app, ObjectID)

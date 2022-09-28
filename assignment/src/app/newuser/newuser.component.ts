@@ -59,7 +59,7 @@ export class NewuserComponent implements OnInit {
       console.log(this.userobj)
       this.userData.add(this.userobj).subscribe((data) => {
         if (data.err == null) { console.log("new product (" + this.newUsername + ") was added")  } else {
-          console.log("Error: " + data.err);
+          alert("Error: " + data.err);
         }
         this.newUsername = ""
         this.newPassword = ""
