@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   username: string = ""
   userlogin: UserloginService = { username: '' }
-  userobj: UserObjService = { username: "", email: "", role: ""}
+  userobj: UserObjService = { username: "", password: "", role: ""}
   
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
         //alert(JSON.stringify(data.valid))
         if (data.valid) {
           this.userobj.username = data.user.username;
-          this.userobj.email = data.user.email;
           this.userobj.role = data.user.role;
           sessionStorage.setItem('userobj', JSON.stringify(this.userobj));
           this.router.navigateByUrl('/home');

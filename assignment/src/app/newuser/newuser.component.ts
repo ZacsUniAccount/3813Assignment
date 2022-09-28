@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserdataService } from '../services/userdata/userdata.service';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -19,11 +21,12 @@ export class NewuserComponent implements OnInit {
   newUsername!: string;
   newEmail!: string;
   newRole!: string;
+  newPassword!: string;
   super = false;
   activeUsers!: [];
   selectedUser!: string;
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient, private userData: UserdataService) { }
 
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
@@ -51,16 +54,17 @@ export class NewuserComponent implements OnInit {
 }
   createClicked() {
     if (!this.super) {this.newRole = 'user'}
-    if (this.newUsername == '' || this.newEmail == '' || !this.newRole) { alert('Please fill all options') } else {
-      this.userobj.username = this.newUsername;
-      this.userobj.email = this.newEmail;
-      this.userobj.role = this.newRole;
-      if (this.super) {this.userobj.role = this.newRole;}
-      console.log(JSON.stringify(this.userobj))
-      this.httpClient.post(BACKEND_URL + "/api/newuser", this.userobj, httpOptions)
-        .subscribe((data: any) => {
-          alert(data.msg)
-        })
+    if (this.newUsername == '' || this.newPassword == '' || !this.newRole || this.newRole == "") { alert('Please fill all options') } else {
+      this.userobj = new UserObjService(this.newUsername, this.newPassword, this.newRole)
+      console.log(this.userobj)
+      this.userData.add(this.userobj).subscribe((data) => {
+        if (data.err == null) { console.log("new product (" + this.newUsername + ") was added")  } else {
+          console.log("Error: " + data.err);
+        }
+        this.newUsername = ""
+        this.newPassword = ""
+        this.newRole = ""
+      })
     }
     this.getUsers()
   }

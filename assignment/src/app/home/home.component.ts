@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     if (data) {
       try { this.userobj = JSON.parse(data) } catch {this.router.navigateByUrl('login')}
     this.username = this.userobj.username
-    this.email = this.userobj.email
     this.role = this.userobj.role
     } else {
       this.router.navigateByUrl('login')
