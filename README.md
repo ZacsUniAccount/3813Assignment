@@ -4,17 +4,17 @@ https://github.com/ZacsUniAccount/3813Assignment
 ## GIT LAYOUT
 The git repository contains an ‘assignment’ folder, with the files of the project inside, as well as a ‘readme’ to let users know about the project and ‘commands.txt’ file to help remember the console commands to use. The branch is up to date on ‘main’. 
 
-For version control, I would complete a small task the project required, check it worked correctly, and then commit with a description of what was added. I did not have the need to make branches as I was the only one working on this project.
+For version control, I would complete a small task the project required, check it worked correctly, and then commit and push with a description of what was added. I did not have the need to make branches as I was the only one working on this project.
 
 ## DATA STRUCTURES
 The data structures I used in this program were ‘groups’, ‘channels’ and ‘users’. 
-All these structures are objects. ‘users’ is the simplest and only contains a ‘name’, ‘email’ and ‘role’. The name is for logging in and displaying when logged in, email is not yet implemented, and ‘role’ determines what the user can view in the website, and what permissions they can control.
+All these structures are objects. ‘users’ is the simplest and only contains a ‘name’, 'password’ and ‘role’. The name is for logging in and displaying when logged in, the password is used to authenticate the user, and ‘role’ determines what the user can view in the website, and what permissions they can control. The 'user' structure is the only structure contained in mongodb. The others are stored in a JSON file locally
  
 The ‘groups’ object contains a ‘title’ with the name of the group, it also contains ‘users’ to keep track of who is in the group, as well as an array of ‘channels’
 ‘channels’ contained a ‘title’ with the name of the channel, and an array of ‘users’ who belong in that channel
 A tree of the data structures can be seen below
 
-[Users:	Name, Email, Role]
+[Users:	Name, Password, Role]
 
 [Groups: Title, [Users], [Channels]: {Title, [users]}
 
@@ -25,14 +25,14 @@ These structures have class files inside their corresponding angular services, a
 ## RESTFUL API
 The angular front end of the website communicates with the Node.JS server. These are the routes which they use.
 
-### postLogin (post)
-this route takes a string ‘username’ and returns a ‘user’ object & ‘valid’ object.
+### login (post)
+this route takes a string ‘username’ and string 'password' then returns a 'info’ object and 'error' object.
 
-It is responsible for taking a username entered by the user, and checking against all ‘user’ objects to find a match. If a match is found it returns ‘valid: true’ and a corresponding user object.  which allows a user to enter the website If no match is found it returns ‘valid: false’. 
+It is responsible for taking a username and password entered by the user, and checking against in mongodb if there is a match for the username. If a match is found it checks whether the password given matches that users password. If it does it returns a corresponding user object which allows a user to enter the website. If no match is found it returns an error message to be displayed. 
 ### newUser (post)
 this route takes a ‘user’ object and returns a ‘valid’ and ‘msg’ object.
 
-It is responsible for taking the given ‘user’ object, checking whether the username already exists, and if not, saving it into a JSON file with other users. 
+It is responsible for taking the given ‘user’ object, checking whether the username already exists, and if not, saving it into a mongo database with other users. 
 ### allUsers (get)
 This route takes no values, and returns a ‘users’ object holding an array of strings.
 
@@ -76,7 +76,7 @@ This route is the main part of the website. On the left there is a navigation me
 ## Services
 My services store my data models as class files so I can ensure when I create and store my data, it is conforming to the correct data structure and types.
 #### userlogin
-this service is a class file which holds the username and in future the password of a user.
+this service is a class file which holds the username and the password of a user.
 
  It is used to ensure the input of a user logging in is valid.
 #### Channel
@@ -88,4 +88,7 @@ This service contains a class file which is used to create and store groups.
 
 It contains a ‘title’ of type string, and array of ‘users’ of type string, and an array of ‘channel’ which uses the ChannelService type from above.
 #### Userobj
-This service contains a class file which is used to create and store users. It has a ‘username’, ‘role’, and ‘email’ all of type string.
+This service contains a class file which is used to create and store users. It has a ‘username’, ‘role’, and 'password’ all of type string.
+
+#### Userdata
+This service is a middle point between the angular app and node server. It includes functions which connect to the nodejs endpoint and ensure the correct data is passed through it.
