@@ -8,7 +8,9 @@ For version control, I would complete a small task the project required, check i
 
 ## DATA STRUCTURES
 The data structures I used in this program were ‘groups’, ‘channels’ and ‘users’. 
-All these structures are objects. ‘users’ is the simplest and only contains a ‘name’, 'password’ and ‘role’. The name is for logging in and displaying when logged in, the password is used to authenticate the user, and ‘role’ determines what the user can view in the website, and what permissions they can control. The 'user' structure is the only structure contained in mongodb. The others are stored in a JSON file locally
+All these structures are objects.
+
+‘users’ is the simplest and only contains a ‘name’, 'password’ and ‘role’. The name is for logging in and displaying when logged in, the password is used to authenticate the user, and ‘role’ determines what the user can view in the website, and what permissions they can control. The 'user' structure is the only structure contained in mongodb. The others are stored in a JSON file locally
  
 The ‘groups’ object contains a ‘title’ with the name of the group, it also contains ‘users’ to keep track of who is in the group, as well as an array of ‘channels’
 ‘channels’ contained a ‘title’ with the name of the channel, and an array of ‘users’ who belong in that channel
