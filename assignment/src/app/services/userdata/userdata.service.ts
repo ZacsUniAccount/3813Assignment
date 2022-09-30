@@ -16,16 +16,4 @@ export class UserdataService {
   login(user:UserloginService){
     return this.http.post<any>('http://localhost:3000/api/login', user)
   }
-  read(){
-    return this.http.get<any>('http://localhost:3000/api/read')
-  }
-  update(user:UserObjService){
-    return this.http.post<any>('http://localhost:3000/api/update', user)
-  }
-  remove(userID: any){
-    return this.http.post<any>('http://localhost:3000/api/remove', {'userid': userID})
-  }
-  checkvalidid(userID: any){
-    return this.http.post<any>('http://localhost:3000/api/checkvalidid', {'user': userID})
-  }
 }
