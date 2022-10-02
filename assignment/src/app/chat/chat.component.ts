@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserObjService } from '../services/userobj/userobj.service';
 import { GroupService } from '../services/group/group.service';
 import { ChannelService } from '../services/channel/channel.service';
+import { SocketService } from '../services/socket/socket.service';
 
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -33,7 +34,11 @@ export class ChatComponent implements OnInit {
   membertype = "group";
   newUser: string = "";
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  messagecontent: string = ""
+  messages: Array<any> = []
+  ioConnection: any;
+
+  constructor(private router: Router, private httpClient: HttpClient, private socketService: SocketService) { }
 
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
@@ -44,7 +49,7 @@ export class ChatComponent implements OnInit {
     } else {
       this.router.navigateByUrl('login')
     }
-
+    this.initIoConnection()
     this.getGroups()
   }
 
@@ -179,6 +184,25 @@ export class ChatComponent implements OnInit {
           })
       }
     } else {alert("user is empty or already exists in " + this.membertype)}
+  }
+
+  private initIoConnection() {
+    this.socketService.initSocket()
+    this.ioConnection = this.socketService.getMessage()
+      .subscribe((message) => {
+        //add new message to messages array
+        this.messages.push(message);
+      });
+  }
+
+  chat() {
+    if(this.messagecontent) {
+      //Check there is a message to send
+      this.socketService.send(this.messagecontent);
+      //this.messagecontent=null;
+    } else {
+      console.log("no message")
+    }
   }
 }
 

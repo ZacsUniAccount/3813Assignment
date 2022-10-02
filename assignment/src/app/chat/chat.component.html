@@ -110,95 +110,35 @@
                                     <div class="position-relative">
                                         <div class="chat-messages p-4">
 
-                                            <div class="chat-message-right pb-4">
+                                            
+                                            <div *ngFor="let m of messages" class="chat-message-right pb-4">
                                                 <div>
                                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
                                                         class="rounded-circle mr-1" alt="Chris Wood" width="40"
                                                         height="40">
                                                     <div class="text-muted small text-nowrap mt-2">2:33 am</div>
                                                 </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                    <div class="font-weight-bold mb-1">You</div>
-                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
-                                                    vix.
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3" >
+                                                    <div class="fw-bold mb-1">new message</div>
+                                                    {{m}}
                                                 </div>
                                             </div>
-                                            <div class="chat-message-right pb-4">
-                                                <div>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
-                                                        height="40">
-                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                                </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                    <div class="font-weight-bold mb-1">You</div>
-                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
-                                                    vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt
-                                                    prodesset te vix.
-                                                </div>
-                                            </div>
-                                            <div class="chat-message-right pb-4">
-                                                <div>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
-                                                        height="40">
-                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                                </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                    <div class="font-weight-bold mb-1">You</div>
-                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
-                                                    vix. Lorem ipsum dolor sit amet, vis erat denique in, dicunt
-                                                    prodesset te vix. Lorem ipsum dolor sit amet, vis erat denique in,
-                                                    dicunt prodesset te vix.
-                                                </div>
-                                            </div>
-                                            <div class="chat-message-right pb-4">
-                                                <div>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
-                                                        height="40">
-                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                                </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                    <div class="font-weight-bold mb-1">You</div>
-                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
-                                                    vix.
-                                                </div>
-                                            </div>
-                                            <div class="chat-message-right pb-4">
-                                                <div>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
-                                                        height="40">
-                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                                </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                    <div class="font-weight-bold mb-1">You</div>
-                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
-                                                    vix.
-                                                </div>
-                                            </div>
-                                            <div class="chat-message-right pb-4">
-                                                <div>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                        class="rounded-circle mr-1" alt="Chris Wood" width="40"
-                                                        height="40">
-                                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                                </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                    <div class="font-weight-bold mb-1">You</div>
-                                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te
-                                                    vix.
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
 
                                     <div class="flex-grow-0 py-3 px-4 border-top">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Type your message">
-                                            <button class="btn btn-primary">Send</button>
+                                            <div class="container">
+                                                <form>
+                                                  <div class="form-group">
+                                                    <label for="messagecontent">New Message</label>
+                                                    <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control" />
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <button (click)="chat()" class="btn btn-primary">Send</button>
+                                                  </div>
+                                                </form>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>

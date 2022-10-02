@@ -20,6 +20,14 @@ const http = require('http').Server(app);
 const server = require('./listen.js');
 server.listen(http, PORT)
 
+const io = require('socket.io')(http,{
+    cors: {
+        origin: "http://localhost:4200",
+        methods: ["GET", "POST"],
+    }
+});
+const sockets = require('./socket.js');
+sockets.connect(io, PORT);
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
