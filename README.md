@@ -71,7 +71,7 @@ The login component is the home route ‘/’ and ‘/login’ route of the app.
 #### Home 
 The home component displays the users role and username to them. There is a button to navigate to the ‘/chat’ route, and if the user is a super admin or group admin, there is another button which navigates to the ‘/newuser’ route. A logout button is also present to clear the session storage and navigate the user back to the login page.
 #### newUser
-This route allows super admins and group admins to create new users who can log into the website. If the user is a super admin, they can also delete any users who have been created. There is a back button to navigate to the ‘/home’ route.
+This page allows new users to be added to the website. It adds users to a mongodb with a password and role which can then be used to login
 #### Chat
 This route is the main part of the website. On the left there is a navigation menu to select groups and channels. Super Admins and Group Admins can see all groups and channels, however Users can only see groups and channels which they are part of. There is also an option to add new groups, and channels inside the selected group, which updates the navigation menu instantly. In the middle will be the chat part of the app, which is not yet implemented so a placeholder is there instead. On the right side of the screen there is an option to see members of the group and channel which the user is currently joined. There is also an input and button to add users to the current group/channel, and remove them, however only adding to the group is currently implemented. There is also a back button in the top right to allow users back to the ‘/home’ component.
 
