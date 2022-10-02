@@ -1,5 +1,7 @@
 var fs = require('fs');
-
+//THIS MODULE IS NO LONGER USED. INSTEAD WE USE THE MONGO VERSION
+//This module adds users to the users arrasy
+//
 module.exports = function(req, res) {
     console.log("newUser running");
     console.log(req.body);

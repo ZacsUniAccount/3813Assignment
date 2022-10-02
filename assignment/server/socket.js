@@ -1,3 +1,7 @@
+//
+//This modile creates a socket io connection and checks when users join, and message a room
+//
+
 module.exports = {
     connect: function(io, PORT) {
         io.on('connection',(socket) => {

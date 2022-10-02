@@ -1,3 +1,5 @@
+//Starts the server
+
 module.exports = {
     listen: function (app, PORT) {
         app.listen(PORT, () => {

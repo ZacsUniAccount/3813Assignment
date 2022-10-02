@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   role!: string
   constructor(private router: Router) { }
 
+  //Check a user is logged in before loading the page
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
     if (data) {
@@ -26,14 +27,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //When the edit user button is clicked, direct user to the newuser component
   usersClicked(){
     this.router.navigateByUrl('newuser')
   }
 
+  //Direct user to the chat componenet when chat is clicked
   chatClicked(){
     this.router.navigateByUrl('chat')
   }
 
+  //Clear the session storage and direct user to login page when 'logout' button is clicked
   logout() {
     sessionStorage.clear();
     this.router.navigateByUrl('login')

@@ -28,50 +28,55 @@ export class NewuserComponent implements OnInit {
 
   constructor(private router: Router, private httpClient: HttpClient, private userData: UserdataService) { }
 
+  //Load the users information, and get all users before the page loads
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
     this.getUsers()
   }
 
+  //Gets all users from the allUsers endpoint
+  //Currently broken as it needs updating to the mongo system
   getUsers() {
     this.httpClient.get(BACKEND_URL + "/api/allUsers")
       .subscribe((data: any) => {
-        //alert(JSON.stringify(data.valid))
-        this.activeUsers=(data.users)
-        console.log(this.activeUsers)
-  });
-}
+        this.activeUsers = (data.users)
+      });
+  }
+
+  //When the create user button is clicked
   createClicked() {
-    if (!this.super) {this.newRole = 'user'}
+    if (!this.super) { this.newRole = 'user' } //If no user type is selected, assume they are a regular user
+    //Check all fields are filled in
     if (this.newUsername == '' || this.newPassword == '' || !this.newRole || this.newRole == "") { alert('Please fill all options') } else {
-      this.userobj = new UserObjService(this.newUsername, this.newPassword, this.newRole)
-      console.log(this.userobj)
-      this.userData.add(this.userobj).subscribe((data) => {
-        if (data.err == null) { console.log("new product (" + this.newUsername + ") was added")  } else {
+      this.userobj = new UserObjService(this.newUsername, this.newPassword, this.newRole) //Add new details to an object
+      this.userData.add(this.userobj).subscribe((data) => { //from the userdata service file, add the user to the mongodb
+        if (data.err == null) { console.log("new product (" + this.newUsername + ") was added") } else { //Confirmation message
           alert("Error: " + data.err);
         }
+        //Clear all fields
         this.newUsername = ""
         this.newPassword = ""
         this.newRole = ""
       })
     }
-    this.getUsers()
+    this.getUsers() //Update current users
   }
 
-  removeClicked(){
-    let remove = {'user': this.selectedUser}
-    console.log(remove)
-    if (this.selectedUser == "super") { alert("super can not be removed, they are the main admin.")} else {
-      this.httpClient.post(BACKEND_URL + '/api/deleteUser', remove, httpOptions)
+  //Remove selected user when clicked
+  removeClicked() {
+    let remove = { 'user': this.selectedUser } //Get selected user
+    if (this.selectedUser == "super") { alert("super can not be removed, they are the main admin.") } else { //Don't let the superadmin be removed
+      this.httpClient.post(BACKEND_URL + '/api/deleteUser', remove, httpOptions) //Call deleteuser endpoint and give them the selected user
         .subscribe((data: any) => {
-          alert(data.msg)
-          this.getUsers()
+          alert(data.msg) //confirmation message
+          this.getUsers() //Update current users
         })
     }
-    
+
   }
 
-  backClicked(){
+  //Navigate the user back to the home page
+  backClicked() {
     this.router.navigateByUrl('home')
   }
 

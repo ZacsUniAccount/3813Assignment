@@ -28,37 +28,24 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //when the login button is clicked
   public loginClicked() {
-    this.userlogin = new UserloginService(this.username, this.password)
+    this.userlogin = new UserloginService(this.username, this.password) //Get the entered credentials
 
-
+    //Use the userdata service to check the mongodb with entered credentials
     this.userData.login(this.userlogin).subscribe((data) => {
-      if (data.err == null) {
+      if (data.err == null) { //If no error is returned
         console.log(data.result)
         this.userobj.username = data.username;
         this.userobj.role = data.role;
-        sessionStorage.setItem('userobj', JSON.stringify(this.userobj));
-        this.router.navigateByUrl('/home');
+        sessionStorage.setItem('userobj', JSON.stringify(this.userobj)); //Set the sessionstorage to remember the user
+        this.router.navigateByUrl('/home'); //Redirect them to home
       } else {
-        alert("Error: " + data.err);
+        alert("Error: " + data.err); //Otherwise, display an error message and allow them to login again
       }
+      //Clear the forms
       this.password = ""
       this.username = ""
     })
   }
-
-  /*
-  this.httpClient.post(BACKEND_URL + "/api/auth", this.userlogin, httpOptions)
-    .subscribe((data: any) => {
-      //alert(JSON.stringify(data.valid))
-      if (data.valid) {
-        this.userobj.username = data.user.username;
-        this.userobj.role = data.user.role;
-        sessionStorage.setItem('userobj', JSON.stringify(this.userobj));
-        this.router.navigateByUrl('/home');
-      }
-    })
-}
-*/
-
 }

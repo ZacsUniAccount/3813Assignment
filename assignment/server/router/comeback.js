@@ -1,6 +1,8 @@
 var fs = require('fs');
 const allUsers = require('./allUsers');
-
+//
+// This module is not used
+//
 module.exports = function (req, res) {
     let u = req.body.user;
     let uArray = [];

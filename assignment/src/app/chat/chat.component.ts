@@ -3,7 +3,6 @@ import { UserObjService } from '../services/userobj/userobj.service';
 import { GroupService } from '../services/group/group.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { SocketService } from '../services/socket/socket.service';
-
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
@@ -162,6 +161,7 @@ export class ChatComponent implements OnInit {
     console.log(this.members)
   }
 
+  
   addUser() {
     let i = this.members.findIndex(user => (user == this.newUser))
     let sendUser = {"user": this.newUser, "group": this.selectedGroup}

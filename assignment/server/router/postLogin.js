@@ -1,4 +1,7 @@
 var fs = require('fs');
+// THIS MODULE IS NO LONGER USED, THE MONGODB VERSION IS USED INTEAD
+//This module checks login credentials
+//
 const testmode = false
 module.exports = function(req, res) {
     console.log("postLogin running");
