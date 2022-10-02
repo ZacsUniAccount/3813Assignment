@@ -30,17 +30,6 @@ export class NewuserComponent implements OnInit {
 
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
-    if (data) {
-      try { this.userobj = JSON.parse(data) } catch { this.router.navigateByUrl('login') }
-      this.role = this.userobj.role
-      if (this.role == 'super admin' || this.role == 'group admin') { } else {
-        this.router.navigateByUrl('home')
-      }
-      if (this.role == 'super admin') {
-        this.super = true
-      }
-    }
-
     this.getUsers()
   }
 
