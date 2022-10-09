@@ -1,5 +1,5 @@
 var fs = require('fs');
-const allUsers = require('./allUsers');
+const allUsers = require('../mongo/find');
 //
 //This module checks a user exists and them to a group
 //
