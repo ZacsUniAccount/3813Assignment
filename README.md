@@ -30,20 +30,20 @@ The angular front end of the website communicates with the Node.JS server. These
 ### login (post)
 this route takes a string ‘username’ and string 'password' then returns a 'info’ object and 'error' object.
 
-It is responsible for taking a username and password entered by the user, and checking against in mongodb if there is a match for the username. If a match is found it checks whether the password given matches that users password. If it does it returns a corresponding user object which allows a user to enter the website. If no match is found it returns an error message to be displayed. 
-### newUser (post)
+It is responsible for taking a username and password entered by the user, and checking against in mongodb users collection if there is a match for the username. If a match is found it checks whether the password given matches that users password. If it does it returns a corresponding user object which allows a user to enter the website. If no match is found it returns an error message to be displayed. 
+### add (post)
 this route takes a ‘user’ object and returns a ‘valid’ and ‘msg’ object.
 
-It is responsible for taking the given ‘user’ object, checking whether the username already exists, and if not, saving it into a mongo database with other users. 
-### allUsers (get)
+It is responsible for taking the given ‘user’ object, checking whether the username already exists, and if not, saving it into a mongo database collection named 'users'. 
+### find (get)
 This route takes no values, and returns a ‘users’ object holding an array of strings.
 
-It is responsible for looking through all users created and stored in the ‘users’ JSON file, and giving them back to the client as a string.
+It is responsible for searching the mongodb users collection for all entries, and saving the username of each one into an array to give back to the client.
 
-### deleteUser (post)
+### delete (post)
 This route takes a string ‘user’ and returns a ‘msg’ object
 
-It reads the ‘users’ JSON file into an object, searches the object for a match on the given ‘user’ string, deletes it, and then writes it back to the JSON file.
+It opens the mongodb users collection, and deletes the user with a matching username it has been given.
 ### allGroups (get)
 This route takes no value, and returns a ‘gArray’ object with a type of ‘group’
 
@@ -96,6 +96,8 @@ This service contains a class file which is used to create and store users. It h
 
 #### Userdata
 This service is a middle point between the angular app and node server. It includes functions which connect to the nodejs endpoint and ensure the correct data is passed through it.
+
+this is where the 'login', 'add', 'find', and 'delete' restful functions are found
 
 #### Socket
 This service is the middle point between the angular client and node socket server, It sends and retrieves messages from the socket server and sends them back to the client. 
