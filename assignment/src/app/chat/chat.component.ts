@@ -39,6 +39,7 @@ export class ChatComponent implements OnInit {
 
   constructor(private router: Router, private httpClient: HttpClient, private socketService: SocketService) { }
 
+  //Check users are logged in and get their information when the page loads
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
     if (data) {
@@ -105,15 +106,18 @@ export class ChatComponent implements OnInit {
     this.getMembers()
   }
 
+  //When a channel is clicked load the members and channel
   channelClicked(channel: string) {
     this.selectedChannel = channel
     this.getMembers()
   }
 
+  //When back is clicked allow the user back to the home page
   backClicked() {
     this.router.navigateByUrl('home')
   }
 
+  //Allow users to add groups
   addgroupClicked() {
     let grouptoadd: GroupService = { "title": this.addgroup, "users": [], "channel": [] }
     this.httpClient.post(BACKEND_URL + "/api/addGroup", grouptoadd, httpOptions)
@@ -124,6 +128,7 @@ export class ChatComponent implements OnInit {
       })
   }
 
+  //Allow users to add channels
   addchannelClicked() {
     let channeltoadd = { "group": this.selectedGroup, "channel": { "title": this.addchannel, "users": [] } }
     if (this.addchannel != "") {
@@ -137,6 +142,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  //List all members in the group and channel
   getMembers() {
     this.members = []
     if (this.membertype == "group") {
@@ -160,8 +166,8 @@ export class ChatComponent implements OnInit {
     }
     console.log(this.members)
   }
-
   
+  //Add users to the group and channel
   addUser() {
     let i = this.members.findIndex(user => (user == this.newUser))
     let sendUser = {"user": this.newUser, "group": this.selectedGroup}
@@ -186,6 +192,7 @@ export class ChatComponent implements OnInit {
     } else {alert("user is empty or already exists in " + this.membertype)}
   }
 
+  //Initiate the socket connection
   private initIoConnection() {
     this.socketService.initSocket()
     this.ioConnection = this.socketService.getMessage()
@@ -195,11 +202,12 @@ export class ChatComponent implements OnInit {
       });
   }
 
+  //When the chat button is pressed send messages with sockets
   chat() {
     if(this.messagecontent) {
       //Check there is a message to send
       this.socketService.send(this.messagecontent);
-      //this.messagecontent=null;
+      this.messagecontent= "";
     } else {
       console.log("no message")
     }

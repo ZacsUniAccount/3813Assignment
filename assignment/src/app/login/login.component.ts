@@ -18,6 +18,7 @@ const BACKEND_URL = "http://localhost:3000";
 })
 export class LoginComponent implements OnInit {
 
+  error = false
   username: string = ""
   password: string = ""
   userlogin: UserloginService = { username: '', password: '' }
@@ -36,12 +37,13 @@ export class LoginComponent implements OnInit {
     this.userData.login(this.userlogin).subscribe((data) => {
       if (data.err == null) { //If no error is returned
         console.log(data.result)
-        this.userobj.username = data.username;
-        this.userobj.role = data.role;
+        this.userobj.username = data.result.username;
+        this.userobj.role = data.result.role;
         sessionStorage.setItem('userobj', JSON.stringify(this.userobj)); //Set the sessionstorage to remember the user
+        console.log(this.userobj)
         this.router.navigateByUrl('/home'); //Redirect them to home
       } else {
-        alert("Error: " + data.err); //Otherwise, display an error message and allow them to login again
+        this.error = true; //Otherwise, display an error message and allow them to login again
       }
       //Clear the forms
       this.password = ""

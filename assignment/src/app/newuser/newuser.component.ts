@@ -31,16 +31,29 @@ export class NewuserComponent implements OnInit {
   //Load the users information, and get all users before the page loads
   ngOnInit(): void {
     var data = sessionStorage.getItem('userobj');
+    console.log(data)
+    if (data) {
+      try { this.userobj = JSON.parse(data) } catch { this.router.navigateByUrl('login') }
+      this.role = this.userobj.role
+      console.log(this.role)
+      if (this.role == 'super admin' || this.role == 'group admin') { } else {
+        this.router.navigateByUrl('home')
+      }
+      if (this.role == 'super admin') {
+        this.super = true
+      }
+      
+    }
+    
     this.getUsers()
   }
 
   //Gets all users from the allUsers endpoint
   //Currently broken as it needs updating to the mongo system
   getUsers() {
-    this.httpClient.get(BACKEND_URL + "/api/allUsers")
-      .subscribe((data: any) => {
-        this.activeUsers = (data.users)
-      });
+    this.userData.find().subscribe((data: any) => {
+      if (data.err == null) {this.activeUsers = data.users}
+    })
   }
 
   //When the create user button is clicked
@@ -50,8 +63,9 @@ export class NewuserComponent implements OnInit {
     if (this.newUsername == '' || this.newPassword == '' || !this.newRole || this.newRole == "") { alert('Please fill all options') } else {
       this.userobj = new UserObjService(this.newUsername, this.newPassword, this.newRole) //Add new details to an object
       this.userData.add(this.userobj).subscribe((data) => { //from the userdata service file, add the user to the mongodb
-        if (data.err == null) { console.log("new product (" + this.newUsername + ") was added") } else { //Confirmation message
-          alert("Error: " + data.err);
+        if (data.err != null) {alert("Error: " + data.err);} else {
+         alert("new user (" + this.newUsername + ") was added as a " + this.newRole);//Confirmation message
+          this.getUsers() 
         }
         //Clear all fields
         this.newUsername = ""
@@ -59,20 +73,20 @@ export class NewuserComponent implements OnInit {
         this.newRole = ""
       })
     }
-    this.getUsers() //Update current users
+     //Update current users
   }
 
   //Remove selected user when clicked
   removeClicked() {
-    let remove = { 'user': this.selectedUser } //Get selected user
+    let remove = {"user": this.selectedUser} //Get selected user
     if (this.selectedUser == "super") { alert("super can not be removed, they are the main admin.") } else { //Don't let the superadmin be removed
-      this.httpClient.post(BACKEND_URL + '/api/deleteUser', remove, httpOptions) //Call deleteuser endpoint and give them the selected user
-        .subscribe((data: any) => {
-          alert(data.msg) //confirmation message
-          this.getUsers() //Update current users
-        })
+      this.userData.delete(remove).subscribe((data) => {
+        if (data.err) {alert("Something went wrong")} else {
+          alert(data.msg)
+          this.getUsers()
+        }
+      })
     }
-
   }
 
   //Navigate the user back to the home page

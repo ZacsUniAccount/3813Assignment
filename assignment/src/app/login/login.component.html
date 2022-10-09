@@ -7,6 +7,7 @@
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
                         <form>
+                            <p *ngIf=error class="text-center text-danger">Credentials invalid, please try again</p>
                             <div class="form-floating mb-3">
                                 
                                 <input type="text" class="form-control" id="username" placeholder="Enter username" [(ngModel)] = "username" name="username"/>

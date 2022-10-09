@@ -14,7 +14,6 @@ const http = require('http').Server(app);
 const server = require('./listen.js');
 server.listen(http, PORT)
 const sockets = require('./socket.js');
-sockets.connect(io, PORT);
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 const io = require('socket.io')(http,{
@@ -23,6 +22,7 @@ const io = require('socket.io')(http,{
         methods: ["GET", "POST"],
     }
 });
+sockets.connect(io, PORT);
 
 //For connecting to mongo endpoints and connecting to the mongodb
 const url = 'mongodb://localhost:27017';
@@ -33,16 +33,12 @@ MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, func
 
     require('./mongo/add.js')(db,app)
     require('./mongo/login.js')(db,app)
+    require('./mongo/delete')(db, app)
+    require('./mongo/find')(db, app)
 })
 
 //Endponts that the server uses. See file for explinations
-//app.post('/api/auth', require('./router/postLogin'));
-//app.post('/api/newUser', require('./router/newUser'));
-app.get('/api/allUsers', require('./router/allUsers'));
-app.post('/api/deleteUser', require('./router/deleteUser'));
 app.get('/api/allGroups', require('./router/allGroups'));
 app.post('/api/addGroup', require('./router/addGroup'));
 app.post('/api/addChannel', require('./router/addChannel'))
 app.post('/api/addGroupUser', require('./router/addGroupUser')); 
-//app.post('api/addChannelUser', require('./router/addChannelUser')); 
-

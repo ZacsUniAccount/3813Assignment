@@ -19,4 +19,12 @@ export class UserdataService {
   login(user:UserloginService){
     return this.http.post<any>('http://localhost:3000/api/login', user)
   }
+  //Deletes users with username
+  delete(user: object){
+    console.log(user)
+    return this.http.post<any>('http://localhost:3000/api/delete', user)
+  }
+  find(){
+    return this.http.get('http://localhost:3000/api/find',)
+  }
 }
